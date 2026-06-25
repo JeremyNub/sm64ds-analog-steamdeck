@@ -11,7 +11,7 @@ Enables playing **Super Mario 64 DS** with the Steam Deck's left analog stick, u
 - **melonDS** — Base emulator: https://melonds.kuribo64.net
 - **Analog Hack for SM64DS** — Original emulator modification (branch `feature/slot2-analog`)
 - **Gemini** — Assistance during the early stages of the project
-- **Claude (Anthropic)** — Source code diagnosis, modification, and AppImage packaging
+- **Claude** — Source code diagnosis, modification, and AppImage packaging
 
 ---
 

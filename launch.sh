@@ -7,7 +7,7 @@
 # ============================================================
 
 APPIMAGE="/home/deck/Desktop/melonDS-AnalogHack-x86_64.AppImage"
-ROM="/ruta/a/tu/SM64DS.nds"
-# ROM="/path/to/your/SM64DS.nds"
+ROM="/path/to/your/SM64DS_Analog.nds"
+# ROM="/ruta/a/tu/SM64DS_Analog.nds"
 
-DISPLAY=:0 "$APPIMAGE" --slot2-analog "$ROM"
+DISPLAY=:0 "$APPIMAGE" --slot2-analog --fullscreen "$ROM"

@@ -1,0 +1,6 @@
+# Ignorar la ROM (no distribuir)
+*.nds
+*.sav
+*.ml1
+*.ml2
+*.mch

@@ -34,47 +34,50 @@ The AppImage contains a modified build of melonDS with custom changes to the CLI
 
 ## Installation
 
-### 1. Download the AppImage
+From the [Releases](../../releases) page, download:
+- `melonDS-AnalogHack-x86_64.AppImage`
+- `SM64DS-Analog-SteamDeck.zip`
 
-Download `melonDS-AnalogHack-x86_64.AppImage` from the [Releases](../../releases) section and place it wherever you prefer, for example:
+---
 
-```
-/home/deck/Desktop/melonDS-AnalogHack-x86_64.AppImage
-```
+### Method A — Dolphin file manager (Steam Deck, no terminal needed)
 
-Make it executable:
+1. Open **Dolphin** and extract `SM64DS-Analog-SteamDeck.zip` — right-click → **Extract archive here**
+2. Move `melonDS-AnalogHack-x86_64.AppImage` into the extracted folder
+3. Right-click `melonDS-AnalogHack-x86_64.AppImage` → **Properties** → **Permissions** → check **Is executable**
+4. Right-click `launch.sh` → **Open with** → **Kate** (or any text editor), update the ROM path to yours, then save:
+   ```
+   ROM="/home/deck/wherever/your/SM64DS_Analog.nds"
+   ```
+5. Right-click `launch.sh` → **Properties** → **Permissions** → check **Is executable**
+6. Open **Steam** in Desktop Mode → **Games → Add a Non-Steam Game** → select `launch.sh`
+7. Switch to **Game Mode** and launch
 
-```bash
-chmod +x /home/deck/Desktop/melonDS-AnalogHack-x86_64.AppImage
-```
+> On first launch, the script automatically copies `melonDS.toml` to `~/.config/melonDS/`, setting up controls and display for Steam Deck. If you already have a melonDS config, it will not be overwritten.
 
-### 2. Set up the launch script
+---
 
-Copy the `launch.sh` template from this repository, or create it manually:
-
-```bash
-nano /home/deck/Desktop/SM64DS-Analog.sh
-```
-
-Contents (adjust paths to match your setup):
-
-```bash
-#!/bin/bash
-DISPLAY=:0 /home/deck/Desktop/melonDS-AnalogHack-x86_64.AppImage --slot2-analog --fullscreen /path/to/your/SM64DS_Analog.nds
-```
-
-Make it executable:
+### Method B — Terminal (advanced users / other Linux distros)
 
 ```bash
-chmod +x /home/deck/Desktop/SM64DS-Analog.sh
+# Extract the zip
+unzip SM64DS-Analog-SteamDeck.zip
+cd SM64DS-Analog-SteamDeck
+
+# Move the AppImage here
+mv ~/Downloads/melonDS-AnalogHack-x86_64.AppImage .
+
+# Make both files executable
+chmod +x melonDS-AnalogHack-x86_64.AppImage launch.sh
+
+# Edit the ROM path
+nano launch.sh
+
+# Run
+./launch.sh
 ```
 
-### 3. Add to Steam
-
-1. Open Steam in **Desktop Mode**
-2. Go to **Games → Add a Non-Steam Game**
-3. Select `SM64DS-Analog.sh`
-4. Save and switch to **Game Mode**
+To add to Steam, go to **Games → Add a Non-Steam Game** and select `launch.sh`.
 
 ---
 
@@ -102,9 +105,9 @@ DISPLAY=:0 /home/deck/Desktop/melonDS-AnalogHack-x86_64.AppImage --slot2-analog 
 
 ---
 
-## Why not just use the standard melonDS commands for Linux?
+## Why not just use nadiaholmquist's Linux build instructions?
 
-The official melonDS Linux build instructions (Ubuntu/Arch/Fedora) use `apt`, `pacman`, or `dnf` to install dependencies and compile from source. On SteamOS, this doesn't work reliably because:
+[nadiaholmquist's fork](https://github.com/nadiaholmquist/melonDS) includes Linux build instructions for Ubuntu, Arch, and Fedora using `apt`, `pacman`, or `dnf` to install dependencies and compile from source. On SteamOS, this doesn't work reliably because:
 
 - The root filesystem is **read-only** and resets on every system update
 - Package managers like `apt` and `pacman` are not available natively
@@ -131,6 +134,7 @@ The `DISPLAY=:0` variable is required when launching from Steam in Game Mode. Ma
 | File | Description |
 |---|---|
 | `melonDS-AnalogHack-x86_64.AppImage` | Modified melonDS build with `--slot2-analog` support |
-| `launch.sh` | Launch script template |
+| `launch.sh` | Launch script — copies config on first run, then launches the emulator |
+| `melonDS.toml` | Pre-configured settings for Steam Deck (controls, display, 4x resolution) |
 | `README.md` | This file (English) |
 | `README.es.md` | Spanish version |

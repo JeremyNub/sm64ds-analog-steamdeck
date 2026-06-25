@@ -34,47 +34,50 @@ La AppImage incluye una versión modificada de melonDS con cambios en el parser 
 
 ## Instalación
 
-### 1. Descargar la AppImage
+Desde la sección [Releases](../../releases), descarga:
+- `melonDS-AnalogHack-x86_64.AppImage`
+- `SM64DS-Analog-SteamDeck.zip`
 
-Descarga `melonDS-AnalogHack-x86_64.AppImage` desde la sección [Releases](../../releases) y colócala donde prefieras, por ejemplo:
+---
 
-```
-/home/deck/Desktop/melonDS-AnalogHack-x86_64.AppImage
-```
+### Método A — Dolphin (Steam Deck, sin terminal)
 
-Dale permisos de ejecución:
+1. Abre **Dolphin** y extrae `SM64DS-Analog-SteamDeck.zip` — clic derecho → **Extraer archivo aquí**
+2. Mueve `melonDS-AnalogHack-x86_64.AppImage` a la carpeta extraída
+3. Clic derecho en `melonDS-AnalogHack-x86_64.AppImage` → **Propiedades** → **Permisos** → marca **Es ejecutable**
+4. Clic derecho en `launch.sh` → **Abrir con** → **Kate** (o cualquier editor de texto), actualiza la ruta de tu ROM y guarda:
+   ```
+   ROM="/home/deck/donde/este/tu/SM64DS_Analog.nds"
+   ```
+5. Clic derecho en `launch.sh` → **Propiedades** → **Permisos** → marca **Es ejecutable**
+6. Abre **Steam** en Modo Escritorio → **Juegos → Añadir juego que no es de Steam** → selecciona `launch.sh`
+7. Cambia al **Modo Juego** y lanza el juego
 
-```bash
-chmod +x /home/deck/Desktop/melonDS-AnalogHack-x86_64.AppImage
-```
+> En el primer lanzamiento, el script copia automáticamente `melonDS.toml` a `~/.config/melonDS/`, configurando los controles y la pantalla para Steam Deck. Si ya tienes una config de melonDS, no será sobreescrita.
 
-### 2. Configurar el script de lanzamiento
+---
 
-Copia la plantilla `launch.sh` de este repositorio o créala manualmente:
-
-```bash
-nano /home/deck/Desktop/SM64DS-Analog.sh
-```
-
-Contenido (ajusta las rutas a tu configuración):
-
-```bash
-#!/bin/bash
-DISPLAY=:0 /home/deck/Desktop/melonDS-AnalogHack-x86_64.AppImage --slot2-analog --fullscreen /ruta/a/tu/SM64DS_Analog.nds
-```
-
-Dale permisos de ejecución:
+### Método B — Terminal (usuarios avanzados / otras distros de Linux)
 
 ```bash
-chmod +x /home/deck/Desktop/SM64DS-Analog.sh
+# Extraer el zip
+unzip SM64DS-Analog-SteamDeck.zip
+cd SM64DS-Analog-SteamDeck
+
+# Mover la AppImage aquí
+mv ~/Downloads/melonDS-AnalogHack-x86_64.AppImage .
+
+# Dar permisos de ejecución a ambos archivos
+chmod +x melonDS-AnalogHack-x86_64.AppImage launch.sh
+
+# Editar la ruta de la ROM
+nano launch.sh
+
+# Ejecutar
+./launch.sh
 ```
 
-### 3. Añadir a Steam
-
-1. Abre Steam en **Modo Escritorio**
-2. Ve a **Juegos → Añadir juego que no es de Steam**
-3. Selecciona `SM64DS-Analog.sh`
-4. Guarda y cambia al **Modo Juego**
+Para añadir a Steam, ve a **Juegos → Añadir juego que no es de Steam** y selecciona `launch.sh`.
 
 ---
 
@@ -102,9 +105,9 @@ DISPLAY=:0 /home/deck/Desktop/melonDS-AnalogHack-x86_64.AppImage --slot2-analog 
 
 ---
 
-## ¿Por qué no usar los comandos estándar de melonDS para Linux?
+## ¿Por qué no usar las instrucciones de compilación en Linux de nadiaholmquist?
 
-Las instrucciones oficiales de compilación de melonDS en Linux (Ubuntu/Arch/Fedora) usan `apt`, `pacman` o `dnf` para instalar dependencias y compilar desde el código fuente. En SteamOS esto no funciona de forma fiable porque:
+El [fork de nadiaholmquist](https://github.com/nadiaholmquist/melonDS) incluye instrucciones de compilación en Linux para Ubuntu, Arch y Fedora usando `apt`, `pacman` o `dnf` para instalar dependencias y compilar desde el código fuente. En SteamOS esto no funciona de forma fiable porque:
 
 - El sistema de archivos raíz es **de solo lectura** y se resetea con cada actualización del sistema
 - Gestores de paquetes como `apt` o `pacman` no están disponibles de forma nativa
@@ -131,6 +134,7 @@ La variable `DISPLAY=:0` es necesaria al lanzar desde Steam en Modo Juego. Aseg�
 | Archivo | Descripción |
 |---|---|
 | `melonDS-AnalogHack-x86_64.AppImage` | Build modificado de melonDS con soporte para `--slot2-analog` |
-| `launch.sh` | Plantilla del script de lanzamiento |
+| `launch.sh` | Script de lanzamiento — copia el config en el primer uso y lanza el emulador |
+| `melonDS.toml` | Configuración preestablecida para Steam Deck (controles, pantalla, resolución 4x) |
 | `README.md` | Versión en inglés |
 | `README.es.md` | Este archivo (español) |

@@ -7,6 +7,7 @@
 # ============================================================
 
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+# Hash de la ROM USA v1.1 (Revision 1) modificada con el parche 'S.MARIO64DS_ASME01_01.ips'
 TARGET_ROM_MD5="a663a9b713edaa39554a72001fd60123"
 TARGET_APPIMAGE_MD5="cb4bb29d3203db8fb604575fe6614fb7"
 
@@ -75,7 +76,7 @@ if [ -z "$ROM" ]; then
         exit 1
     fi
     if [ "$(md5sum "$ROM" | cut -d' ' -f1)" != "$TARGET_ROM_MD5" ]; then
-        zenity --error --text="El archivo seleccionado no es la ROM parcheada correcta.\nVerifica que aplicaste el parche de LRFLEW." 2>/dev/null
+        zenity --error --text="El archivo seleccionado no es la ROM parcheada correcta.\n\nVerifica que aplicaste el parche 'S.MARIO64DS_ASME01_01.ips' sobre una ROM limpia USA v1.1 (Revision 1)." 2>/dev/null
         exit 1
     fi
 fi

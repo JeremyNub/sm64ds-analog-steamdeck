@@ -27,7 +27,7 @@ La AppImage incluye una versión modificada de melonDS con cambios en el parser 
 ## Requisitos
 
 - Steam Deck con SteamOS
-- ROM de **Super Mario 64 DS** parcheada para input analógico (formato `.nds`) — ver el [repositorio de LRFLEW](https://github.com/LRFLEW/AM64DS_DeSmuME) para el código de trucos / parche IPS
+- ROM de **Super Mario 64 DS** (formato `.nds`) parcheada específicamente con el archivo **`S.MARIO64DS_ASME01_01.ips`** (requiere estrictamente la ROM base **USA v1.1 / Revision 1**) — ver el [repositorio de LRFLEW](https://github.com/LRFLEW/AM64DS_DeSmuME) para más detalles.
 - El archivo `melonDS-AnalogHack-x86_64.AppImage` desde la sección [Releases](../../releases)
 
 ---
@@ -141,7 +141,7 @@ Es posible que tu ROM no esté parcheada. Aplica primero el código de trucos o 
 Descárgala desde la sección [Releases](../../releases) de este repositorio, no desde el sitio oficial de melonDS.
 
 **El script dice que la ROM no es la versión parcheada correcta**
-Asegúrate de haber aplicado el parche del hack analógico del [repositorio de LRFLEW](https://github.com/LRFLEW/AM64DS_DeSmuME) a tu ROM de SM64DS.
+Asegúrate de haber aplicado el parche **`S.MARIO64DS_ASME01_01.ips`** sobre una ROM limpia de **Super Mario 64 DS (USA) v1.1 (Revision 1)**. El script rechazará hashes de otras versiones o ROMs sin parchear.
 
 **Pantalla negra o sin imagen en Modo Juego**
 La variable `DISPLAY=:0` es necesaria al lanzar desde Steam en Modo Juego. Asegúrate de que está presente en tu script.

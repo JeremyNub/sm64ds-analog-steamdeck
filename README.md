@@ -27,7 +27,7 @@ The AppImage contains a modified build of melonDS with custom changes to the CLI
 ## Requirements
 
 - Steam Deck running SteamOS
-- A **Super Mario 64 DS** ROM patched for analog input (`.nds` format) — see [LRFLEW's repo](https://github.com/LRFLEW/AM64DS_DeSmuME) for the cheat code / IPS patch
+- A **Super Mario 64 DS** ROM (`.nds` format) patched using the **`S.MARIO64DS_ASME01_01.ips`** file (strictly requires the **USA v1.1 / Revision 1** base ROM) — see [LRFLEW's repo](https://github.com/LRFLEW/AM64DS_DeSmuME) for more details.
 - The `melonDS-AnalogHack-x86_64.AppImage` from the [Releases](../../releases) page
 
 ---
@@ -141,7 +141,7 @@ Your ROM may not be patched. Apply the cheat code or IPS patch from [LRFLEW's re
 Download it from the [Releases](../../releases) page of this repository, not from the official melonDS website.
 
 **Script says the ROM is not the correct patched version**
-Make sure you applied the analog hack patch from [LRFLEW's repository](https://github.com/LRFLEW/AM64DS_DeSmuME) to your SM64DS ROM.
+Make sure you applied the **`S.MARIO64DS_ASME01_01.ips`** patch to a clean, base **USA v1.1 (Revision 1)** SM64DS ROM. The script will reject hashes from other game revisions or unpatched files.
 
 **Black screen or no display in Game Mode**
 The `DISPLAY=:0` variable is required when launching from Steam in Game Mode. Make sure it's present in your script.
